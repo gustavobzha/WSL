@@ -298,7 +298,7 @@ export LANG=en_US.UTF-8
 zstyle ':completion:*' completer _list _oldlist _expand _complete _ignored _match _correct _approximate _prefix
 zstyle ':completion:*' list-colors ''
 zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
-zstyle :compinstall filename '/home/gustavo/.zshrc'
+zstyle :compinstall filename '/home/$USER/.zshrc'
 
 autoload -Uz compinit
 compinit
@@ -354,6 +354,6 @@ alias home='cd ~/'
 source /usr/share/doc/fzf/examples/key-bindings.zsh
 
 # Autojump settings
-[[ -s /home/gustavo/.autojump/etc/profile.d/autojump.sh ]] && source /home/gustavo/.autojump/etc/profile.d/autojump.sh
+[[ -s /home/$USER/.autojump/etc/profile.d/autojump.sh ]] && source /home/$USER/.autojump/etc/profile.d/autojump.sh
 
 autoload -U compinit && compinit -u
