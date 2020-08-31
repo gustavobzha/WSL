@@ -1,0 +1,22 @@
+#!/bin/bash
+
+sudo apt install vim g++ gdb build-essential clang git neovim nodejs npm fzf ranger ripgrep xclip yarnpkg pipenv silversearcher-ag tmux neofetch xclip git xorg autojump zsh zshdb fonts-powerline -yy
+
+chsh -s /bin/zsh
+
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+git clone git://github.com/wting/autojump.git
+
+cd autojump
+sudo ln -s /usr/bin/python3 /usr/bin/python
+./install.py
+cd ..
+
+curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+zsh zplugInstall
+zplug install
+
+# Download Meslo font of Nerd fonts package
+# mv *ttf /home/gustavo/.fonts/
+# fc-cache -f -v
+# fc-list | grep Meslo
