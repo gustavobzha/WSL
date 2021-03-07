@@ -40,8 +40,10 @@ set shiftwidth=4
 set termguicolors 
 
 "put no background for vim
-"hi Normal guibg=NONE ctermbg=NONE
-autocmd ColorScheme * highlight Normal ctermbg=NONE guibg=NONE
+hi Normal guibg=NONE ctermbg=NONE
+
+"To set background color as same terminal background color comment the command above and uncomment the bellow
+"autocmd ColorScheme * highlight Normal ctermbg=NONE guibg=NONE
 
 
 "set max number of times the key can be pressed
