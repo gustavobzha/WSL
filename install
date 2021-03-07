@@ -1,31 +1,56 @@
 #!/bin/bash
 
-sudo apt install vim g++ gdb build-essential clang git neovim nodejs npm fzf ranger ripgrep xclip yarnpkg pipenv silversearcher-ag tmux neofetch xclip git xorg autojump zsh zshdb fonts-powerline -yy
+#Install required packages
+sudo apt install g++ gdb build-essential clang git curl wget unzip neovim nodejs npm fzf ranger ripgrep xclip yarnpkg pipenv silversearcher-ag tmux neofetch xorg autojump zsh zshdb fonts-powerline fonts-firacode -yy
 
-cp .bashrc ~/.bashrc
-cp .p10k.zsh ~/.p10k.zsh
+# Download Plug, Vim Plug Manager
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+
 cp .tmux.conf ~/.tmux.conf
-cp .vimrc ~/.vimrc
-cp .zshrc ~/.zshrc
 cp .vim ~/.vim -r
 cp .config/nvim ~/.config/nvim -r
 
-chsh -s /bin/zsh
-
+# Download tmux plugins
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-git clone git://github.com/wting/autojump.git
 
+# Install autojump
+git clone git://github.com/wting/autojump.git
 cd autojump
 sudo ln -s /usr/bin/python3 /usr/bin/python
 ./install.py
 cd ..
 
-curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
-zsh zplugInstall
-zplug install
+# Download Oh-My-Zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-# Download Meslo font of Nerd fonts package
-# mv *ttf /home/gustavo/.fonts/
-# fc-cache -f -v
-# fc-list | grep Meslo
-# in vim: PlugInstall
+# Download Zinit, zshell plugin manager. PS: Don't install recommended plugins
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh)"
+
+# Download and Install spaceship prompt, zshell theme
+git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt" --depth=1
+ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
+
+# Set spaceship theme for zsh
+sed -i 's/ZSH_THEME=".*/ZSH_THEME="spaceship"/' ~/.zshrc
+
+# Add some oh-my-zsh plugins
+sed -i 's/plugins=(git.*/plugins=(git autojump colored-man-pages colorize)/' ~/.zshrc
+
+# Add zinit plugins and theming additional configuration
+cat plugins_and_theming >> ~/.zshrc
+
+# Download Meslo fonts
+mkdir -p ~/.local/share/fonts
+cd ~/.local/share/fonts
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Meslo.zip
+unzip Meslo.zip
+rm -rf Meslo.zip
+cd ~/
+fc-cache -f -v
+
+#Install Vim Plugins and Coc Plugins
+nvim -c ':PlugInstall | quit | quit | quit'
+
+# Set zshell as default
+chsh -s $(which zsh)

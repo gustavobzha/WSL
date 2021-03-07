@@ -33,14 +33,16 @@ set nu
 set clipboard+=unnamedplus
 
 "set the table to stop in 8 spaces
-set tabstop=8
+set tabstop=4
 set shiftwidth=4
 
 " if you want to run vim in a terminal
 set termguicolors 
 
 "put no background for vim
-hi Normal guibg=NONE ctermbg=NONE
+"hi Normal guibg=NONE ctermbg=NONE
+autocmd ColorScheme * highlight Normal ctermbg=NONE guibg=NONE
+
 
 "set max number of times the key can be pressed
 "let g:hardtime_maxcount=3
