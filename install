@@ -1,15 +1,19 @@
 #!/bin/bash
 
+#Update packages
+sudo apt update && sudo apt upgrade -y
+
 #Install required packages
-sudo apt install g++ gdb build-essential clang curl wget unzip neovim nodejs npm fzf ranger ripgrep xclip yarnpkg pipenv silversearcher-ag tmux neofetch xorg autojump zsh zshdb fonts-powerline fonts-firacode -yy
+sudo apt install g++ gdb build-essential clang curl wget unzip neovim nodejs npm fzf ranger ripgrep xclip yarnpkg pipenv silversearcher-ag tmux neofetch xorg autojump zsh zshdb fonts-powerline fonts-firacode unzip fontconfig -yy
+
+cp .tmux.conf ~/.tmux.conf
+cp .vim ~/.vim -r
+mkdir ~/.config
+cp .config/nvim ~/.config/nvim -r
 
 # Download Plug, Vim Plug Manager
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-
-cp .tmux.conf ~/.tmux.conf
-cp .vim ~/.vim -r
-cp .config/nvim ~/.config/nvim -r
 
 # Download tmux plugins
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
@@ -20,6 +24,7 @@ cd autojump
 sudo ln -s /usr/bin/python3 /usr/bin/python
 ./install.py
 cd ..
+rm -rf autojump
 
 # Download Oh-My-Zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
