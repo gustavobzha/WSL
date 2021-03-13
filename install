@@ -4,7 +4,7 @@
 sudo apt update && sudo apt upgrade -y
 
 #Install required packages
-sudo apt install g++ gdb build-essential clang curl wget unzip neovim nodejs npm fzf ranger ripgrep xclip yarnpkg pipenv silversearcher-ag tmux neofetch xorg autojump zsh zshdb fonts-powerline fonts-firacode unzip fontconfig -yy
+sudo apt install g++ gdb build-essential clang curl wget unzip neovim nodejs npm fzf ranger ripgrep xclip yarnpkg pipenv silversearcher-ag tmux neofetch xorg autojump zsh zshdb fonts-powerline fonts-firacode unzip fontconfig dos2unix -yy
 
 cp .tmux.conf ~/.tmux.conf
 cp .vim ~/.vim -r

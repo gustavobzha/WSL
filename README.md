@@ -81,9 +81,7 @@ Após isso clique em Finish.
 Após instalar sua Distribuição e criar seu usuário e senha, digite o seguintes comandos no seu SubSystem Linux:
 
 ```sudo apt update && sudo apt upgrade -y
-sudo apt install git
 git clone https://github.com/gustavobzha/WSL.git
 cd WSL
-chmod +x install
 ./install 
 ```
