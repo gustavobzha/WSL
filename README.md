@@ -64,15 +64,15 @@ Este programa é necessário para rodar aplicações gráficas Linux no Windows,
 [Download](https://sourceforge.net/projects/vcxsrv)
 </br>
 
+*Configuração Xlauncher para inicilizar junto com o Windows:*
+
+Abra o Xlauncher, deixe selecionado em “Multiple windows” e “Display number = -1”, Next, Next, e em Additional parameters for VcXsrv adicione “-ac” para liberar o controle de acesso do display, após isso vá em Next e “Save configuration”, salve o arquivo no caminho seu_usuário>AppData>Roaming>Microsoft>Windows>Start Menu>Programs>Startup.
+Após isso clique em Finish.
+
 *Configure o Firewall do Windows para não acabar bloqueando o App:*
 
 Windows Defender Firewall &#8594; Advanced Settings &#8594; Inbound Rules &#8594; botão direito em “VcXsrv windows xserver de profile “public” e protocol “TCP” e vá em properties &#8594; Scope, em “Remote IP address” selecione “These IP addresses” e clique em Add e adicione o seguinte ip : 172.16.0.0/12 
 após isso basta dar “Apply” e “Ok”. Isso irá limitar as sub-redes que podem acessar as portas para a sub-rede WSL. 
-
-*Configuração Xlauncher para inicilizar junto com o Windows:*
-
-Abra também o Xlauncher, deixe selecionado em “Multiple windows” e “Display number = -1”, Next, Next, e em Additional parameters for VcXsrv adicione “-ac” para liberar o controle de acesso do display, após isso vá em Next e “Save configuration”, salve o arquivo no caminho seu_usuário>AppData>Roaming>Microsoft>Windows>Start Menu>Programs>Startup.
-Após isso clique em Finish.
 
 ---
 
